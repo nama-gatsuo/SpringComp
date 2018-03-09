@@ -5,7 +5,7 @@
 			"major" : 7,
 			"minor" : 3,
 			"revision" : 4,
-			"architecture" : "x64",
+			"architecture" : "x86",
 			"modernui" : 1
 		}
 ,
@@ -152,7 +152,7 @@
 					"presentation" : 1,
 					"presentation_rect" : [ 15.75, 68.0, 48.5, 22.0 ],
 					"style" : "",
-					"text" : "Reset"
+					"text" : "Null"
 				}
 
 			}
@@ -614,7 +614,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 28.5, 189.0, 49.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 19.75, 197.0, 49.0, 20.0 ],
+					"presentation_rect" : [ 8.75, 188.0, 49.0, 20.0 ],
 					"style" : "",
 					"text" : "Obj ID"
 				}
@@ -634,7 +634,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 28.5, 219.0, 71.0, 31.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 70.75, 191.5, 71.0, 31.0 ],
+					"presentation_rect" : [ 71.25, 188.0, 56.0, 31.0 ],
 					"style" : ""
 				}
 

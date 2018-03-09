@@ -27,19 +27,21 @@ void main(){
     float instanceY = floor(gl_InstanceID / size.x);
 
     float val = texture(soundTex, vec2(instanceX+0.5, instanceY+0.5)).r;
+    vec2 boxSize = vec2(9., 10.);
 
     vec2 offset = vec2(0.);
-    float height = val * 20.0;
-    p.y *= height;
-    p.y += height * 2.0;
+    p.x *= boxSize.x;
+    p.z *= boxSize.y;
+    p.y *= boxSize.x;
+    p.y += val * 120.0;
 
-    p.x += (8.0 + offset.y) * (instanceY - size.y * 0.5);
-    p.z += (8.0 + offset.x) * (instanceX - size.x * 0.5);
+    p.x += (boxSize.x + offset.y) * (instanceY - size.y * 0.5);
+    p.z += (boxSize.y + offset.x) * (instanceX - size.x * 0.5);
 
     gl_Position = modelViewProjectionMatrix * p;
 
     vec4 viewPos = modelViewMatrix * p;
     vDepth = - viewPos.z / (farClip - nearClip);
-    vColor = vec4(vec3(0.2,0.28,0.3) * (1.0 + val * 4.0), 1.0);
+    vColor = vec4(vec3(0.2,0.28,0.3) * (0.7 + val * 3.2), 1.0);
     vPosition = viewPos;
 }

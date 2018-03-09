@@ -19,7 +19,7 @@ public:
         
         updateShader.load("shader/scene/MassVis/Update");
         
-        mesh = ofMesh::box(8.0, 5.0, 8.0, 1, 1, 1);
+        mesh = ofMesh::box(1.0, 1.0, 1.0, 1, 1, 1);
         shader.load("shader/scene/MassVis/MassVis.vert", "shader/customShader.frag");
     };
     void update(float dt){
@@ -57,7 +57,7 @@ private:
     ofxFFTLive fftLive;
     
     const int historySize = 256;
-    const int fftSize = 192;
+    const int fftSize = 128;
     
     int current = 0;
     ofFbo soundTex[2];

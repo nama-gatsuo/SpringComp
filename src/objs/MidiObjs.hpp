@@ -9,7 +9,7 @@ public:
         
         mesh = ofMesh::icosphere(1, 0);
         ofMatrix4x4 m;
-        float s = ((float)velocity / 128. + 1.) * 10.;
+        float s = ((float)velocity / 128. + 1.) * 8.;
         m.glScale(s, s, s);
         
         ofFloatColor c;
@@ -31,7 +31,7 @@ public:
     };
     void update(float dt){
         life -= dt;
-        pos.x += dt * 4.;
+        pos.x += dt * 5.5;
         
     };
     
@@ -53,7 +53,7 @@ public:
     
 private:
     int midi, velocity;
-    float life = 500.;
+    float life = 400.;
     ofVboMesh mesh;
     ofVec3f pos;
     ofQuaternion q;

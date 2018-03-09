@@ -47,7 +47,7 @@ void main() {
 
     p.x = position.x;
     p.z = position.z;
-    p.y = - t * 2400 + 1200;
+    p.y = - t * 3000 + 1500;
 
     rotate(p, vec3(1.0, 0., 0.), rot.x);
     rotate(p, vec3(0, 1., 0.), rot.y);

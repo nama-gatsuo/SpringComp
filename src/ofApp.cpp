@@ -7,11 +7,13 @@ void ofApp::setup(){
     pe.setup();
     setupDeferred();
     updateDeferredParam();
-    panel.add(dt.set("dt", 2.0, 0.001, 4.0));
+    panel.add(dt.set("dt", 1.0, 0.001, 3.0));
     receiver.setup(7401);
     
     lp1.setSpeed(0.01);
     lp2.setSpeed(0.01);
+    
+    cam.setup();
     
     shared_ptr<ObjBase> o1(new IfsPoints());
     o1->setup();
@@ -137,7 +139,7 @@ void ofApp::update(){
             
         } else if (dirs[0] == "dt") {
             float to = m.getArgAsFloat(0);
-            dt.set(0.1 + to * 4.);
+            dt.set(0.05 + to * 3.);
         
         } else if (dirs[0] == "note") {
             int midi = ofToInt(dirs[1]);

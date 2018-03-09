@@ -5,9 +5,9 @@ class SmoothPoint : public ofPoint{
 public:
     SmoothPoint():mSpeed(0.05){};
     void update(float dt){
-        this->x += (mTarget.x - this->x) * mSpeed * dt;
-        this->y += (mTarget.y - this->y) * mSpeed * dt;
-        this->z += (mTarget.z - this->z) * mSpeed * dt;
+        ofPoint::x += (mTarget.x - ofPoint::x) * mSpeed * dt;
+        ofPoint::y += (mTarget.y - ofPoint::y) * mSpeed * dt;
+        ofPoint::z += (mTarget.z - ofPoint::z) * mSpeed * dt;
     };
     void to(ofPoint target){
         mTarget = target;
@@ -16,7 +16,7 @@ public:
         mSpeed = speed;
     };
     bool isMoving(){
-        float d2 = pow(mTarget.x - this->x, 2.) + pow(mTarget.y - this->y, 2.) + pow(mTarget.z - this->z, 2.);
+        float d2 = pow(mTarget.x - ofPoint::x, 2.) + pow(mTarget.y - ofPoint::y, 2.) + pow(mTarget.z - ofPoint::z, 2.);
         return sqrt(d2) > 100.;
     };
     
@@ -105,24 +105,32 @@ public:
 
 class MovingCam : public ofCamera {
 public:
-    MovingCam(){
+    MovingCam(){};
+    void setup(){
         pos.setSpeed(0.01);
-        up = ofVec3f(0,1,0);
+        look.setSpeed(0.01);
+        up.setSpeed(0.01);
+        
+        pos.set(ofPoint(0,1000,0));
+        look.set(ofPoint(0));
+        up.set(ofPoint(0,1,0));
+        
         bang();
-    };
+    }
     void update(float dt){
         
         pos.update(dt);
         look.update(dt);
+        up.update(dt);
         
         ofCamera::setPosition(pos);
-        ofCamera::lookAt(look, up);
+        ofCamera::lookAt(look, up.getNormalized());
         
     };
     void top(){
-        pos.to(ofPoint(0, 1200, 0));
-        look.to(ofPoint(0., 0., 0.));
-        up = ofVec3f(0,0,1.);
+        pos.to(ofPoint(0, 1400, 0));
+        look.to(ofPoint(0));
+        up.to(ofPoint(0,0,1));
     };
     
     void bang(){
@@ -132,17 +140,17 @@ public:
             if (coin < 0.7) {
                 pos.to(ofPoint(ofRandom(-800, 800), ofRandom(50, 300), ofRandom(-800, 800)));
                 look.to(ofPoint(ofRandom(-50, 50), ofRandom(10, 10), ofRandom(-50, 50)));
-                up = ofVec3f(0,1,0);
+                up.to(ofPoint(0,1,0));
             } else if (coin < 0.9) {
                 // looking down on
                 pos.to(ofPoint(ofRandom(-200, 200), ofRandom(800, 1000), ofRandom(-200, 200)));
-                look.to(ofPoint(0., 0., 0.));
-                up = ofVec3f(0,1,0);
+                look.to(ofPoint(0., 10., 0.));
+                up.to(ofPoint(0,1,0));
             } else {
                 // look from near center
                 pos.to(ofPoint(ofRandom(-80, 80), ofRandom(10, 80), ofRandom(-80, 80)));
                 look.to(ofPoint(ofRandom(-50, 50), ofRandom(-10, 10), ofRandom(-50, 50)));
-                up = ofVec3f(0,1,0);
+                up.to(ofPoint(0,1,0));
             }
         }
     };
@@ -150,7 +158,7 @@ public:
 private:
     SmoothPoint pos;
     SmoothPoint look;
-    ofVec3f up;
+    SmoothPoint up;
 };
 
 struct PingPongBuffer {

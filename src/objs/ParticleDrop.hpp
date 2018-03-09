@@ -21,7 +21,7 @@ public:
         
     };
     void update(float dt){
-        t += dt*0.5;
+        t += dt * 0.5;
         rot.update(dt);
         col.update(dt);
     };
@@ -73,7 +73,7 @@ private:
     SmoothPoint rot;
     SmoothPoint col;
     
-    float t;
+    float t = 0.;
     
 };
 
